@@ -4,48 +4,128 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Karnataka Kova Heritage</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Karnataka Kova Heritage
+  </title>
+
+  <!-- CSS -->
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
 
     <div class="logo">
-      Kova Heritage
+      Karnataka Kova Heritage
     </div>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Shop</a>
-      <a href="#">Our Story</a>
-      <a href="#">Contact</a>
+
+      <a href="#">
+        Home
+      </a>
+
+      <a href="#products">
+        Products
+      </a>
+
+      <a href="#story">
+        Our Story
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
     </nav>
+
+    <!-- CART -->
 
     <div class="cart">
 
-      <span class="cart-icon">🛒</span>
+      <span class="cart-icon">
+        🛒
+      </span>
 
-      <div class="badge" id="cart-count">
+      <div class="badge"
+           id="cart-count">
+
         0
+
       </div>
 
     </div>
 
   </header>
 
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <h1>
+        Authentic Karnataka Traditional Sweets
+      </h1>
+
+      <p>
+
+        Crafted with pure milk,
+        premium ghee and timeless
+        heritage recipes.
+
+      </p>
+
+      <button
+        type="button"
+        id="exploreBtn"
+        class="explore-btn">
+
+        Explore Collection
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- MAIN -->
+
   <main class="container">
 
-    <section class="product-section">
+    <!-- PRODUCT SECTION -->
 
-      <!-- LEFT -->
+    <section class="product-section"
+             id="products">
+
+      <!-- LEFT SECTION -->
 
       <div class="left-section">
+
+        <!-- MAIN IMAGE -->
 
         <div class="main-image">
 
@@ -55,6 +135,8 @@
             alt="Milk Burfi">
 
         </div>
+
+        <!-- THUMBNAILS -->
 
         <div class="thumbnails">
 
@@ -77,75 +159,193 @@
 
       </div>
 
-      <!-- RIGHT -->
+      <!-- RIGHT SECTION -->
 
       <div class="right-section">
 
-        <h1 class="product-title" id="productTitle">
+        <span class="tag">
+
+          Traditional Heritage Sweet
+
+        </span>
+
+        <!-- PRODUCT TITLE -->
+
+        <h1 class="product-title"
+            id="productTitle">
+
           Premium Milk Burfi
+
         </h1>
+
+        <!-- PRICE -->
 
         <div class="price">
 
-          <span class="current-price" id="currentPrice">
+          <span class="current-price"
+                id="currentPrice">
+
             ₹450
+
           </span>
 
-          <span class="old-price" id="oldPrice">
+          <span class="old-price"
+                id="oldPrice">
+
             ₹500
+
           </span>
 
         </div>
+
+        <!-- DESCRIPTION -->
 
         <p class="desc">
 
-          Experience authentic Karnataka traditional sweets crafted
-          using premium ingredients, pure milk, fresh ghee and
-          heritage recipes passed through generations.
+          Experience authentic Karnataka sweets
+          handcrafted with premium ingredients,
+          pure milk and rich traditional flavors.
 
         </p>
 
+        <!-- WEIGHT -->
+
+        <h3 class="section-title">
+          Select Weight
+        </h3>
+
         <div class="weight-options">
 
-          <button type="button" class="weight-btn active">
+          <button type="button"
+                  class="weight-btn active">
+
             250g
+
           </button>
 
-          <button type="button" class="weight-btn">
+          <button type="button"
+                  class="weight-btn">
+
             500g
+
           </button>
 
-          <button type="button" class="weight-btn">
+          <button type="button"
+                  class="weight-btn">
+
             1kg
+
           </button>
 
         </div>
+
+        <!-- QUANTITY -->
+
+        <h3 class="section-title">
+          Quantity
+        </h3>
 
         <div class="quantity-box">
 
-          <button type="button" id="minus">
+          <button type="button"
+                  id="minus">
+
             -
+
           </button>
 
           <span id="quantity">
+
             1
+
           </span>
 
-          <button type="button" id="plus">
+          <button type="button"
+                  id="plus">
+
             +
+
           </button>
 
         </div>
 
+        <!-- BUTTONS -->
+
         <div class="buttons">
 
-          <button type="button" class="add-cart">
+          <button type="button"
+                  class="add-cart">
+
             Add to Cart
+
           </button>
 
-          <button type="button" class="buy-now">
+          <button type="button"
+                  class="buy-now">
+
             Buy Now
+
           </button>
+
+        </div>
+
+        <!-- TABS -->
+
+        <div class="tabs">
+
+          <button
+            type="button"
+            class="tab-btn active"
+            data-tab="ingredients">
+
+            Ingredients
+
+          </button>
+
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="storage">
+
+            Storage
+
+          </button>
+
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="shipping">
+
+            Shipping
+
+          </button>
+
+        </div>
+
+        <!-- TAB CONTENT -->
+
+        <div class="tab-content active"
+             id="ingredients">
+
+          Pure milk, sugar,
+          cardamom, dry fruits
+          and premium desi ghee.
+
+        </div>
+
+        <div class="tab-content"
+             id="storage">
+
+          Store in cool dry place.
+          Refrigerate after opening.
+
+        </div>
+
+        <div class="tab-content"
+             id="shipping">
+
+          Delivery available across India
+          within 3-5 working days.
 
         </div>
 
@@ -153,7 +353,239 @@
 
     </section>
 
+    <!-- RELATED PRODUCTS -->
+
+    <section class="related-products">
+
+      <div class="section-heading">
+
+        <h2>
+          Signature Collection
+        </h2>
+
+        <p>
+          Explore our handcrafted
+          traditional sweets
+        </p>
+
+      </div>
+
+      <div class="product-cards">
+
+        <!-- CARD 1 -->
+
+        <article
+          class="card"
+          data-name="Premium Milk Burfi">
+
+          <img
+            src="images/milkburfie.jpg"
+            alt="Milk Burfi">
+
+          <h3>
+            Milk Burfi
+          </h3>
+
+          <p>
+            ₹450
+          </p>
+
+        </article>
+
+        <!-- CARD 2 -->
+
+        <article
+          class="card"
+          data-name="Classic Gulab Jamun">
+
+          <img
+            src="images/jamun.jpg"
+            alt="Gulab Jamun">
+
+          <h3>
+            Gulab Jamun
+          </h3>
+
+          <p>
+            ₹320
+          </p>
+
+        </article>
+
+        <!-- CARD 3 -->
+
+        <article
+          class="card"
+          data-name="Premium Traditional Sweet">
+
+          <img
+            src="images/milk-kova.png"
+            alt="Milk Kova">
+
+          <h3>
+            Milk Kova
+          </h3>
+
+          <p>
+            ₹380
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- STORY SECTION -->
+
+    <section class="story-section"
+             id="story">
+
+      <div class="story-content">
+
+        <h2>
+          Our Heritage Story
+        </h2>
+
+        <p>
+
+          Karnataka Kova Heritage preserves
+          the timeless art of Indian sweet-making.
+          Every sweet is crafted with authentic
+          regional recipes and carefully selected ingredients.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT SECTION -->
+
+    <section class="contact-section"
+             id="contact">
+
+      <div class="section-heading">
+
+        <h2>
+          Contact Us
+        </h2>
+
+        <p>
+          We'd love to hear from you
+        </p>
+
+      </div>
+
+      <!-- CONTACT FORM -->
+
+      <form class="contact-form">
+
+        <input type="text"
+               placeholder="Your Name"
+               required>
+
+        <input type="email"
+               placeholder="Your Email"
+               required>
+
+        <textarea
+          placeholder="Your Message"
+          required></textarea>
+
+        <button type="submit">
+
+          Send Message
+
+        </button>
+
+      </form>
+
+    </section>
+
   </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+      <!-- FOOTER ABOUT -->
+
+      <div>
+
+        <h3>
+          Karnataka Kova Heritage
+        </h3>
+
+        <p>
+
+          Traditional sweets crafted
+          with purity, heritage and love.
+
+        </p>
+
+      </div>
+
+      <!-- FOOTER LINKS -->
+
+      <div>
+
+        <h4>
+          Quick Links
+        </h4>
+
+        <a href="#">
+          Home
+        </a>
+
+        <a href="#products">
+          Products
+        </a>
+
+        <a href="#story">
+          Story
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+      <!-- FOOTER CONTACT -->
+
+      <div>
+
+        <h4>
+          Contact
+        </h4>
+
+        <p>
+          Email raviuppar200@gmail.com
+        </p>
+
+        <p>
+          Phone: +91 9480119169
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+      © 2026 Karnataka Kova Heritage.
+      All Rights Reserved.
+
+    </div>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 

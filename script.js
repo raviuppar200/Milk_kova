@@ -1,41 +1,89 @@
 // MAIN ELEMENTS
 
 const mainImage = document.getElementById("mainProductImage");
+
 const productTitle = document.getElementById("productTitle");
+
 const currentPrice = document.getElementById("currentPrice");
+
 const oldPrice = document.getElementById("oldPrice");
 
-const cards = document.querySelectorAll(".card");
+const quantityText = document.getElementById("quantity");
 
 const plusBtn = document.getElementById("plus");
+
 const minusBtn = document.getElementById("minus");
-const quantityText = document.getElementById("quantity");
 
 const cartCount = document.getElementById("cart-count");
 
 const addCartBtn = document.querySelector(".add-cart");
 
+const buyNowBtn = document.querySelector(".buy-now");
 
-// PRODUCT DATA
+const thumbs = document.querySelectorAll(".thumb");
+
+const cards = document.querySelectorAll(".card");
+
+const weightBtns = document.querySelectorAll(".weight-btn");
+
+const tabBtns = document.querySelectorAll(".tab-btn");
+
+const tabContents = document.querySelectorAll(".tab-content");
+
+const desc = document.querySelector(".desc");
+
+const exploreBtn = document.querySelector(".hero button");
+
+const contactForm = document.querySelector(".contact-form");
+
+
+// PRODUCT DATABASE
 
 const products = {
 
-  "Premium Milk Burfi": {
+  milkburfi: {
+
+    title: "Premium Milk Burfi",
+
     image: "images/milkburfie.jpg",
+
     price: 450,
-    oldPrice: 500
+
+    oldPrice: 500,
+
+    description:
+      "Authentic Karnataka milk burfi handcrafted using pure milk, premium ghee and traditional recipes."
+
   },
 
-  "Classic Gulab Jamun": {
+  jamun: {
+
+    title: "Classic Gulab Jamun",
+
     image: "images/jamun.jpg",
+
     price: 320,
-    oldPrice: 360
+
+    oldPrice: 360,
+
+    description:
+      "Soft and delicious gulab jamun prepared using rich khoya and traditional ingredients."
+
   },
 
-  "Premium Traditional Sweet": {
+  milkkova: {
+
+    title: "Premium Milk Kova",
+
     image: "images/milk-kova.png",
+
     price: 380,
-    oldPrice: 420
+
+    oldPrice: 420,
+
+    description:
+      "Rich Karnataka milk kova made with slow-cooked milk and heritage sweet-making techniques."
+
   }
 
 };
@@ -43,7 +91,7 @@ const products = {
 
 // CURRENT PRODUCT
 
-let selectedProduct = "Premium Milk Burfi";
+let selectedProduct = "milkburfi";
 
 
 // QUANTITY
@@ -51,38 +99,159 @@ let selectedProduct = "Premium Milk Burfi";
 let quantity = 1;
 
 
-// UPDATE PRODUCT DETAILS
+// WEIGHT MULTIPLIER
 
-function updateProduct(productName) {
+let weightMultiplier = 1;
 
-  const product = products[productName];
 
-  selectedProduct = productName;
+// UPDATE PRICE FUNCTION
 
-  mainImage.src = product.image;
+function updatePrice(product) {
 
-  productTitle.innerText = productName;
+  const totalPrice =
+    product.price * quantity * weightMultiplier;
 
-  currentPrice.innerText = "₹" + (product.price * quantity);
+  const totalOldPrice =
+    product.oldPrice * quantity * weightMultiplier;
 
-  oldPrice.innerText = "₹" + (product.oldPrice * quantity);
+  currentPrice.innerText = "₹" + totalPrice;
+
+  oldPrice.innerText = "₹" + totalOldPrice;
 
 }
 
 
-// CARD CLICK
+// UPDATE PRODUCT FUNCTION
 
-cards.forEach(card => {
+function updateProduct(productKey) {
 
-  card.addEventListener("click", () => {
+  const product = products[productKey];
 
-    const productName = card.dataset.name;
+  selectedProduct = productKey;
+
+  // UPDATE IMAGE
+
+  mainImage.src = product.image;
+
+  // UPDATE TITLE
+
+  productTitle.innerText = product.title;
+
+  // UPDATE DESCRIPTION
+
+  desc.innerText = product.description;
+
+  // UPDATE PRICE
+
+  updatePrice(product);
+
+  // UPDATE ACTIVE THUMBNAIL
+
+  thumbs.forEach(t =>
+    t.classList.remove("active")
+  );
+
+  if(productKey === "milkburfi"){
+
+    thumbs[0].classList.add("active");
+
+  }
+
+  else if(productKey === "jamun"){
+
+    thumbs[1].classList.add("active");
+
+  }
+
+  else{
+
+    thumbs[2].classList.add("active");
+
+  }
+
+}
+
+
+// THUMBNAIL CLICK EVENTS
+
+thumbs.forEach((thumb, index) => {
+
+  thumb.addEventListener("click", () => {
 
     quantity = 1;
 
     quantityText.innerText = quantity;
 
-    updateProduct(productName);
+    weightMultiplier = 1;
+
+    resetWeightButtons();
+
+    if(index === 0){
+
+      updateProduct("milkburfi");
+
+    }
+
+    else if(index === 1){
+
+      updateProduct("jamun");
+
+    }
+
+    else if(index === 2){
+
+      updateProduct("milkkova");
+
+    }
+
+  });
+
+});
+
+
+// RELATED PRODUCT CARDS
+
+cards.forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    quantity = 1;
+
+    quantityText.innerText = quantity;
+
+    weightMultiplier = 1;
+
+    resetWeightButtons();
+
+    const name = card.dataset.name;
+
+    if(name === "Premium Milk Burfi"){
+
+      updateProduct("milkburfi");
+
+    }
+
+    else if(name === "Classic Gulab Jamun"){
+
+      updateProduct("jamun");
+
+    }
+
+    else{
+
+      updateProduct("milkkova");
+
+    }
+
+    // SCROLL TO PRODUCT
+
+    document
+      .querySelector(".product-section")
+      .scrollIntoView({
+
+        behavior: "smooth"
+
+      });
 
   });
 
@@ -97,7 +266,7 @@ plusBtn.addEventListener("click", () => {
 
   quantityText.innerText = quantity;
 
-  updateProduct(selectedProduct);
+  updatePrice(products[selectedProduct]);
 
 });
 
@@ -106,13 +275,13 @@ plusBtn.addEventListener("click", () => {
 
 minusBtn.addEventListener("click", () => {
 
-  if (quantity > 1) {
+  if(quantity > 1){
 
     quantity--;
 
     quantityText.innerText = quantity;
 
-    updateProduct(selectedProduct);
+    updatePrice(products[selectedProduct]);
 
   }
 
@@ -129,24 +298,73 @@ addCartBtn.addEventListener("click", () => {
 
   cartCount.innerText = cart;
 
-  alert(quantity + " item(s) added to cart!");
+  alert(
+    quantity +
+    " item(s) added to cart!"
+  );
 
 });
 
 
-// THUMBNAIL IMAGE SWITCHING
+// BUY NOW BUTTON
 
-const thumbs = document.querySelectorAll(".thumb");
+buyNowBtn.addEventListener("click", () => {
 
-thumbs.forEach(thumb => {
+  alert(
+    "Proceeding to checkout for " +
+    quantity +
+    " item(s)"
+  );
 
-  thumb.addEventListener("click", () => {
+});
 
-    mainImage.src = thumb.src;
 
-    thumbs.forEach(t => t.classList.remove("active"));
+// RESET WEIGHT BUTTONS
 
-    thumb.classList.add("active");
+function resetWeightButtons(){
+
+  weightBtns.forEach(btn =>
+    btn.classList.remove("active")
+  );
+
+  weightBtns[0].classList.add("active");
+
+}
+
+
+// WEIGHT BUTTONS
+
+weightBtns.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    weightBtns.forEach(b =>
+      b.classList.remove("active")
+    );
+
+    btn.classList.add("active");
+
+    const weight = btn.innerText;
+
+    if(weight === "250g"){
+
+      weightMultiplier = 1;
+
+    }
+
+    else if(weight === "500g"){
+
+      weightMultiplier = 2;
+
+    }
+
+    else if(weight === "1kg"){
+
+      weightMultiplier = 4;
+
+    }
+
+    updatePrice(products[selectedProduct]);
 
   });
 
@@ -155,14 +373,13 @@ thumbs.forEach(thumb => {
 
 // TABS
 
-const tabBtns = document.querySelectorAll(".tab-btn");
-const tabContents = document.querySelectorAll(".tab-content");
-
 tabBtns.forEach(btn => {
 
   btn.addEventListener("click", () => {
 
-    tabBtns.forEach(b => b.classList.remove("active"));
+    tabBtns.forEach(b =>
+      b.classList.remove("active")
+    );
 
     tabContents.forEach(content =>
       content.classList.remove("active")
@@ -177,3 +394,38 @@ tabBtns.forEach(btn => {
   });
 
 });
+
+
+// EXPLORE COLLECTION BUTTON
+
+exploreBtn.addEventListener("click", () => {
+
+  document
+    .getElementById("products")
+    .scrollIntoView({
+
+      behavior: "smooth"
+
+    });
+
+});
+
+
+// CONTACT FORM
+
+contactForm.addEventListener("submit", (e) => {
+
+  e.preventDefault();
+
+  alert(
+    "Thank you for contacting Karnataka Kova Heritage!"
+  );
+
+  contactForm.reset();
+
+});
+
+
+// INITIAL LOAD
+
+updateProduct("milkburfi");
